@@ -1,0 +1,143 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="row w-100 justify-content-center">
+      <div class="col-12 col-lg-6">
+        <div class="card shadow-lg p-4" style="border-radius: 15px;">
+          <h3 class="text-center mb-4">Register</h3>
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            
+            <!-- Row for Name and Designation -->
+            <div class="row mb-3">
+              <div class="col-12 col-md-6">
+                <label for="name" class="form-label">Full Name</label>
+                <input 
+                    type="text" 
+                    id="name" 
+                    class="form-control form-control-sm" 
+                    formControlName="name" 
+                    placeholder="Enter your full name" 
+                />
+                @if(registerForm.controls['name'].invalid && registerForm.controls['name'].touched){
+                    <small class="text-danger">
+                        Name is required.
+                    </small>
+                }
+              </div>
+              <div class="col-12 col-md-6">
+                <label for="designation" class="form-label">Designation</label>
+                <input 
+                    type="text" 
+                    id="designation" 
+                    class="form-control form-control-sm" 
+                    formControlName="designation" 
+                    placeholder="Your designation" 
+                />
+                @if(registerForm.controls['designation'].invalid && registerForm.controls['designation'].touched){
+                    <small class="text-danger">
+                        Designation is required.
+                    </small>
+                }
+              </div>
+            </div>
+  
+            <!-- Row for Email and Date of Birth -->
+            <div class="row mb-3">
+              <div class="col-12 col-md-6">
+                <label for="email" class="form-label">Email</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    class="form-control form-control-sm" 
+                    formControlName="email" 
+                    placeholder="Enter your email" 
+                />
+                @if(registerForm.controls['email'].invalid && registerForm.controls['email'].touched){
+                    <small class="text-danger">
+                        Enter a valid email address.
+                    </small>
+                }
+              </div>
+              <div class="col-12 col-md-6">
+                <label for="dateOfBirth" class="form-label">Date of Birth</label>
+                <input 
+                    type="date" 
+                    id="dateOfBirth" 
+                    class="form-control form-control-sm" 
+                    formControlName="dateOfBirth" 
+                />
+                @if(registerForm.controls['dateOfBirth'].invalid && registerForm.controls['dateOfBirth'].touched){
+                    <small class="text-danger">
+                        Date of Birth is required.
+                    </small>
+                }
+              </div>
+            </div>
+
+            <!-- Row for Role -->
+            <div class="row mb-3">
+                <div class="col-12">
+                <label for="role" class="form-label">Role</label>
+                <select 
+                    id="role" 
+                    class="form-control form-control-sm" 
+                    formControlName="role"
+                >
+                    <option value="" disabled selected>Select your role</option>
+                    @for (role of roles; track role.id) {
+                    <option [value]="role">{{role}}</option>   
+                    } 
+                </select>
+                @if(registerForm.controls['role'].invalid && registerForm.controls['role'].touched){
+                    <small class="text-danger">Role is required.</small>
+                }
+                </div>
+            </div>
+            <!-- Row for Username and Password -->
+            <div class="row mb-3">
+              <div class="col-12 col-md-6">
+                <label for="userName" class="form-label">Username</label>
+                <input 
+                    type="text" 
+                    id="userName" 
+                    class="form-control form-control-sm" 
+                    formControlName="userName" 
+                    placeholder="Choose a username" 
+                />
+                @if(registerForm.controls['userName'].invalid && registerForm.controls['userName'].touched){
+                    <small class="text-danger">
+                        Username is required.
+                    </small>
+                }
+              </div>
+              <div class="col-12 col-md-6">
+                <label for="password" class="form-label">Password</label>
+                <input
+                    type="password" 
+                    id="password" 
+                    class="form-control 
+                    form-control-sm" 
+                    formControlName="password" 
+                    placeholder="Choose a password" 
+                />
+                @if(registerForm.controls['password'].invalid && registerForm.controls['password'].touched){
+                    <small class="text-danger">
+                        Password is required.
+                    </small>
+                }
+              </div>
+            </div>
+            <!-- Error Message -->
+            @if(errorMessage){
+              <div class="alert alert-danger text-center">
+                {{ errorMessage }}
+              </div>
+            }
+            <!-- Submit Button aligned to right -->
+            <div class="d-flex justify-content-end">
+              <button type="submit" class="btn btn-primary btn-sm" [disabled]="registerForm.invalid">Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

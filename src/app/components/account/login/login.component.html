@@ -1,0 +1,64 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="row w-100 justify-content-center">
+      <div class="col-12 col-lg-4">
+        <div class="card p-4 shadow-lg" style="border-radius: 15px;">
+          <h3 class="text-center mb-3">Login</h3>
+  
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            
+            <!-- Username Input -->
+            <div class="row mb-3">
+              <div class="col-12">
+                <label for="username" class="form-label">Username</label>
+                <input
+                  type="text"
+                  id="username"
+                  class="form-control form-control-sm"
+                  placeholder="Enter your username"
+                  formControlName="username"
+                  required
+                />
+                @if(loginForm.controls['username'].invalid && loginForm.controls['username'].touched){
+                  <small class="text-danger">Username is required</small>
+                }
+              </div>
+            </div>
+  
+            <!-- Password Input -->
+            <div class="row mb-3">
+              <div class="col-12">
+                <label for="password" class="form-label">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  class="form-control form-control-sm"
+                  placeholder="Enter your password"
+                  formControlName="password"
+                  required
+                />
+                @if(loginForm.controls['password'].invalid && loginForm.controls['password'].touched){
+                  <small class="text-danger">Password is required (Min 6 characters)</small>
+                }
+              </div>
+            </div>
+  
+            <!-- Error Message -->
+            @if(errorMessage){
+              <div class="alert alert-danger text-center">
+                {{ errorMessage }}
+              </div>
+            }
+  
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid">Login</button>
+          </form>
+  
+          <!-- Registration Link -->
+          <div class="text-center mt-3">
+            <small>Don't have an account? <a href="/register" class="text-decoration-none fw-bold">Register Now</a></small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
