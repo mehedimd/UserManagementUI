@@ -7,8 +7,7 @@ import { Router } from '@angular/router';
   selector: 'app-login',
   standalone: true,
   imports: [ReactiveFormsModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  templateUrl: './login.component.html'
 })
 export class LoginComponent {
   loginForm: FormGroup; 
@@ -24,14 +23,14 @@ export class LoginComponent {
   private router = inject(Router);
 
   onSubmit() {
-    if (this.loginForm.valid) {
-      console.log('Login Form Data:', this.loginForm.value);
-      // Here, you can send this.loginForm.value to your backend API
-      
+    if (this.loginForm.valid) { 
+
       this.authService.login(this.loginForm.value).subscribe({
-        next : res => {
+        next : (res : any) => {
           console.log(res);
-          this.router.navigate(['/'])
+          localStorage.setItem('token',res.accessToken);
+          localStorage.setItem('refreshToken',res.refreshToken)
+          this.router.navigate([''])
         },
         error : e => {
           this.errorMessage = e.error.message || 'Login failed! Please try again.';

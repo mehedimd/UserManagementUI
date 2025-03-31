@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { MasterService } from '../shared/services/master.service';
 import { Register } from '../models/account/register';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -14,5 +15,13 @@ export class AccountService {
 
   getRoles() {
     return this.masterService.get<any[]>('Auth/roles');
+  }
+
+  getUsers() {
+    return this.masterService.get<any[]>('Auth/users');
+  }
+
+  deleteUser(userId: string){
+    return this.masterService.delete(`Auth/user/delete/${userId}`);
   }
 }

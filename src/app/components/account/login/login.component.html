@@ -1,4 +1,4 @@
-<div class="container d-flex justify-content-center align-items-center vh-100">
+<div class="container d-flex justify-content-center align-items-center py-5">
     <div class="row w-100 justify-content-center">
       <div class="col-12 col-lg-4">
         <div class="card p-4 shadow-lg" style="border-radius: 15px;">
@@ -6,7 +6,6 @@
   
           <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             
-            <!-- Username Input -->
             <div class="row mb-3">
               <div class="col-12">
                 <label for="username" class="form-label">Username</label>
@@ -24,7 +23,6 @@
               </div>
             </div>
   
-            <!-- Password Input -->
             <div class="row mb-3">
               <div class="col-12">
                 <label for="password" class="form-label">Password</label>
@@ -53,7 +51,6 @@
             <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid">Login</button>
           </form>
   
-          <!-- Registration Link -->
           <div class="text-center mt-3">
             <small>Don't have an account? <a href="/register" class="text-decoration-none fw-bold">Register Now</a></small>
           </div>

@@ -12,8 +12,7 @@ import { Router } from '@angular/router';
   selector: 'app-register',
   standalone: true,
   imports: [ReactiveFormsModule],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.css',
+  templateUrl: './register.component.html'
 })
 export class RegisterComponent {
   registerForm!: FormGroup;
