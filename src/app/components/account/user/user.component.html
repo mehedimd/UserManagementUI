@@ -22,7 +22,7 @@
                 <td>{{ user.dateOfBirth | date }}</td>
                 <td class="text-center">
                   <button class="btn btn-warning btn-sm py-0 rounded-2" (click)="openEditModal(user, editUserModal)">Edit</button>
-                    @if(true){
+                    @if(userRole == 'admin'){
                     <button class="btn btn-danger btn-sm py-0 rounded-2 ms-2" (click)="deleteUser(user.id)">Delete</button>
                     }
                 </td>
