@@ -10,8 +10,7 @@ import Swal from 'sweetalert2'
   selector: 'app-user',
   standalone: true,
   imports: [DatePipe,ReactiveFormsModule,NgbModule],
-  templateUrl: './user.component.html',
-  styleUrl : './user.component.css'
+  templateUrl: './user.component.html'
 })
 export class UserComponent implements OnInit {
   users: any[] = [];
