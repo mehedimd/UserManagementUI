@@ -7,7 +7,7 @@
             
             <div class="row mb-3">
               <div class="col-12 col-md-6">
-                <label for="name" class="form-label">Full Name</label>
+                <label for="name" class="form-label">Full Name <span class="text-danger">*</span></label>
                 <input 
                     type="text" 
                     id="name" 
@@ -22,13 +22,13 @@
                 }
               </div>
               <div class="col-12 col-md-6">
-                <label for="designation" class="form-label">Designation</label>
+                <label for="designation" class="form-label">Designation <span class="text-danger">*</span></label>
                 <input 
                     type="text" 
                     id="designation" 
                     class="form-control form-control-sm" 
                     formControlName="designation" 
-                    placeholder="Your designation" 
+                    placeholder="Enter your designation" 
                 />
                 @if(registerForm.controls['designation'].invalid && registerForm.controls['designation'].touched){
                     <small class="text-danger">
@@ -55,7 +55,7 @@
                 }
               </div>
               <div class="col-12 col-md-6">
-                <label for="dateOfBirth" class="form-label">Date of Birth</label>
+                <label for="dateOfBirth" class="form-label">Date of Birth <span class="text-danger">*</span></label>
                 <input 
                     type="date" 
                     id="dateOfBirth" 
@@ -73,14 +73,14 @@
 
             <div class="row mb-3">
                 <div class="col-12">
-                <label for="role" class="form-label">Role</label>
+                <label for="role" class="form-label">Role <span class="text-danger">*</span></label>
                 <select 
                     id="role" 
                     class="form-control form-control-sm" 
                     formControlName="role"
                 >
                     <option value="" disabled selected>Select your role</option>
-                    @for (role of roles; track role.id) {
+                    @for (role of roles; track role) {
                     <option [value]="role">{{role}}</option>   
                     } 
                 </select>
@@ -92,7 +92,7 @@
 
             <div class="row mb-3">
               <div class="col-12 col-md-6">
-                <label for="userName" class="form-label">Username</label>
+                <label for="userName" class="form-label">Username <span class="text-danger">*</span></label>
                 <input 
                     type="text" 
                     id="userName" 
@@ -107,7 +107,7 @@
                 }
               </div>
               <div class="col-12 col-md-6">
-                <label for="password" class="form-label">Password</label>
+                <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
                 <input
                     type="password" 
                     id="password" 

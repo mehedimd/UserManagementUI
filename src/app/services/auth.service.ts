@@ -19,7 +19,6 @@ export class AuthService {
   isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
     if (!token) {
-      console.error('Token is null or undefined.');
       return false;
     }
   
@@ -55,7 +54,7 @@ export class AuthService {
 
       console.log(claims);
       const role = claims["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] || claims["role"];
-      return role;
+      return role ? role.toLowerCase() : null;
 
     } else {
       console.error('Failed to decode token.');

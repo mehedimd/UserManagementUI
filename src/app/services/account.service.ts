@@ -21,6 +21,11 @@ export class AccountService {
     return this.masterService.get<any[]>('Auth/users');
   }
 
+  updateUser(id: string, data: any) {
+    console.log(data)
+    return this.masterService.put<any>(`Auth/user/update/${id}`, data);
+  }
+
   deleteUser(userId: string){
     return this.masterService.delete(`Auth/user/delete/${userId}`);
   }

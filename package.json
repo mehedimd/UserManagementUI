@@ -22,6 +22,7 @@
     "@angular/router": "^18.2.0",
     "@angular/ssr": "^18.2.16",
     "@auth0/angular-jwt": "^5.2.0",
+    "@ng-bootstrap/ng-bootstrap": "^17.0.1",
     "@primeng/themes": "^18.0.0",
     "bootstrap": "^5.3.3",
     "express": "^4.18.2",

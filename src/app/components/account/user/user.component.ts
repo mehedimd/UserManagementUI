@@ -1,23 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { AccountService } from '../../../services/account.service';
 import { AuthService } from '../../../services/auth.service';
 import { DatePipe } from '@angular/common';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NgbModal, NgbModalRef, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [DatePipe],
-  templateUrl: './user.component.html'
+  imports: [DatePipe,ReactiveFormsModule,NgbModule],
+  templateUrl: './user.component.html',
+  styleUrl : './user.component.css'
 })
 export class UserComponent implements OnInit {
   users: any[] = [];
   userRole: string = '';
+  editUserForm!: FormGroup;
+  selectedUserId!: string;
+  modalRef!: NgbModalRef;
 
-  constructor(private accountService: AccountService, private authService: AuthService) {}
+  constructor(
+    private accountService: AccountService, 
+    private authService: AuthService,
+    private fb: FormBuilder, private modalService: NgbModal
+  ) {}
 
   ngOnInit() {
     this.userRole = this.authService.getUserRole(); // Get the logged-in user's role
+    console.log(this.userRole)
     this.loadUsers();
+
+    this.editUserForm = this.fb.group({
+      name: ['',Validators.required],
+      email: ['', [Validators.email]],
+      designation: ['',Validators.required]
+    });
   }
 
   loadUsers() {
@@ -30,6 +47,35 @@ export class UserComponent implements OnInit {
         console.error('Error fetching users', err);
       }
     });
+  }
+
+  
+  openEditModal(user: any, content: TemplateRef<any>) {
+    this.selectedUserId = user.id;
+    this.editUserForm.patchValue({
+      name: user.name,
+      email: user.email,
+      designation: user.designation
+    });
+
+    this.modalRef = this.modalService.open(content, { centered: true });
+  }
+
+  updateUser(modal: any) {
+    if (!this.selectedUserId) return;
+
+    const updatedData = this.editUserForm.value;
+    this.accountService.updateUser(this.selectedUserId, updatedData).subscribe({
+      next : res => {
+        this.loadUsers();
+        modal.close();
+      },
+      error : e => {
+        console.log(e);
+        modal.close();
+      }
+    }
+    );
   }
 
   deleteUser(userId: string) {

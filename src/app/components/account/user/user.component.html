@@ -1,6 +1,6 @@
 <div class="container mt-4">
     <h4 class="mb-2">User List</h4>
-    <div class="table-responsive mb-4 bg-white">
+    <div class="table-responsive mb-4">
       <table class="table table-sm table-bordered table-hover align-middle">
         <thead>
           <tr>
@@ -9,7 +9,6 @@
             <th>Email</th>
             <th>Designation</th>
             <th>Date of Birth</th>
-            <th>Role</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -22,12 +21,9 @@
                 <td>{{ user.designation }}</td>
                 <td>{{ user.dateOfBirth | date }}</td>
                 <td class="text-center">
-                  <span class="badge bg-primary text-light">{{ user.role }}</span>
-                </td>
-                <td class="text-center">
-                    <button class="btn btn-warning btn-sm rounded-2" >Update</button>
-                    @if(userRole == 'Admin'){
-                    <button class="btn btn-danger btn-sm rounded-2 ms-2" (click)="deleteUser(user.id)">Delete</button>
+                  <button class="btn btn-warning btn-sm py-0 rounded-2" (click)="openEditModal(user, editUserModal)">Edit</button>
+                    @if(userRole == 'admin'){
+                    <button class="btn btn-danger btn-sm py-0 rounded-2 ms-2" (click)="deleteUser(user.id)">Delete</button>
                     }
                 </td>
               </tr>
@@ -36,3 +32,47 @@
       </table>
     </div>
   </div>
+
+
+<!-- NgbModal Template for Edit User-->
+<ng-template #editUserModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Edit User</h5>
+    <button type="button" class="btn-close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editUserForm">
+      <div class="mb-3">
+        <label class="form-label">Full Name <span class="text-danger">*</span></label>
+        <input type="text" class="form-control form-control-sm" formControlName="name" placeholder="Enter your full name">
+        @if(editUserForm.controls['name'].invalid && editUserForm.controls['name'].touched){
+          <small class="text-danger">
+              Name is required.
+          </small>
+      }
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control form-control-sm" formControlName="email" placeholder="Enter your email">
+        @if(editUserForm.controls['email'].invalid && editUserForm.controls['email'].touched){
+          <small class="text-danger">
+              Enter a valid email address.
+          </small>
+      }
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Designation <span class="text-danger">*</span></label>
+        <input type="text" class="form-control form-control-sm" formControlName="designation" placeholder="Enter your designation">
+        @if(editUserForm.controls['designation'].invalid && editUserForm.controls['designation'].touched){
+          <small class="text-danger">
+              Designation is required.
+          </small>
+      }
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-sm btn-secondary" (click)="modal.dismiss()">Close</button>
+    <button type="button" class="btn btn-sm btn-primary" [disabled]="editUserForm.invalid" (click)="updateUser(modal)">Update</button>
+  </div>
+</ng-template>
