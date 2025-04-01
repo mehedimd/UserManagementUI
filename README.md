@@ -1,27 +1,27 @@
 # UserManagementUI
+# Technology Use:
+ 1. Angular CLI version 18.2.16.
+ 2. auth guard
+ 3. interceptor
+ 4. ngBootstrap
+ 5. bootstrap 5.3
+ 6. sweetalert2
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.16.
+#Login Page
+![login page](https://github.com/user-attachments/assets/3ceeef76-1d46-4b8d-a9a1-29506038432b)
 
-## Development server
+#Register Page
+![register page](https://github.com/user-attachments/assets/0259c22c-6f63-4142-ae22-ed6f6c5a0fef)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+#User List for admin
+![user list for admin](https://github.com/user-attachments/assets/4d69014d-c63a-4396-ab3e-f4ed0f0eb7db)
 
-## Code scaffolding
+#User List for normal user
+![user list for normal user](https://github.com/user-attachments/assets/c6cae137-4411-4931-8110-6b4291155fa4)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+#Edit User
+![edit user](https://github.com/user-attachments/assets/72417aea-d02c-4f6a-a8b7-c62f283ba2c9)
 
-## Build
+#Delete Confirmation User
+![delete confirmation sweetalert2](https://github.com/user-attachments/assets/5ea6df91-f5a6-4540-b78b-f11542dc7213)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
