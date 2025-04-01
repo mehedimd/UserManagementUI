@@ -47,10 +47,8 @@ export class RegisterComponent {
   }
   onSubmit() {
     if (this.registerForm.valid) {
-      console.log('Register Form Data:', this.registerForm.value);
       this.accountService.register(this.registerForm.value).subscribe({
         next: (res) => {
-          console.log(res);
           this.router.navigate(['/login']);
         },
         error: (e) => {

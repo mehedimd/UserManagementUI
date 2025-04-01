@@ -4,6 +4,7 @@ import { AuthService } from '../../../services/auth.service';
 import { DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgbModal, NgbModalRef, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-user',
@@ -40,7 +41,6 @@ export class UserComponent implements OnInit {
   loadUsers() {
     this.accountService.getUsers().subscribe({
       next: (data : any) => {
-        console.log(data);
         this.users = data;
       },
       error: (err) => {
@@ -79,16 +79,28 @@ export class UserComponent implements OnInit {
   }
 
   deleteUser(userId: string) {
-    if (confirm('Are you sure you want to delete this user?')) {
-      this.accountService.deleteUser(userId).subscribe({
-        next: () => {
-          alert('User deleted successfully!');
-          this.loadUsers();
-        },
-        error: (err) => {
-          console.error('Error deleting user', err);
-        }
-      });
-    }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.accountService.deleteUser(userId).subscribe({
+          next: () => {
+            Swal.fire('Deleted!', 'User has been deleted.', 'success');
+            this.ngOnInit();
+          },
+          error: (err) => {
+            console.error('Error deleting user', err);
+            Swal.fire('Error', 'There was a problem deleting the user.', 'error');
+          }
+        });
+      }
+    });
   }
+  
 }

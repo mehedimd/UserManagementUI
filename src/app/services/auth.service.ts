@@ -70,8 +70,6 @@ export class AuthService {
     }
     const claims = this.decodeJwt(token);
     if (claims) { 
-
-      console.log(claims);
       const userName = claims["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
       return userName;
 
@@ -109,7 +107,7 @@ export class AuthService {
   // refresh token
 
   async tryRefreshingTokens(): Promise<boolean> {
-    console.log("Hello from Auth Gurard");
+    console.log("Hello from tryRefreshingTokens");
     try{
       const jwt: any = localStorage.getItem('token');
       const refreshToken: any = localStorage.getItem('refreshToken');
@@ -124,7 +122,7 @@ export class AuthService {
 
       const refreshRes = await new Promise<TokenVM>(
         (resolve, reject) => {
-          this.masterService.post<TokenVM>('Auth/RefreshToken', credentials)
+          this.masterService.post<TokenVM>('Auth/refresh/token', credentials)
           .subscribe({
               next: (res: TokenVM) => {
                 console.log(res)

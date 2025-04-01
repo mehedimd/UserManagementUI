@@ -22,7 +22,6 @@ export class AccountService {
   }
 
   updateUser(id: string, data: any) {
-    console.log(data)
     return this.masterService.put<any>(`Auth/user/update/${id}`, data);
   }
 

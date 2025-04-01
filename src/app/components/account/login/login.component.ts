@@ -27,7 +27,6 @@ export class LoginComponent {
 
       this.authService.login(this.loginForm.value).subscribe({
         next : (res : any) => {
-          console.log(res);
           localStorage.setItem('token',res.accessToken);
           localStorage.setItem('refreshToken',res.refreshToken)
           this.router.navigate([''])
